@@ -16,11 +16,12 @@ console.log('==========================');
 //触发器本体
 Options.Triggers.push({
 
-  //其他区域id可见zone_id.ts
-  //尘封秘岩: 431, 昂萨哈凯尔：888，荣誉野：554，狼狱停船场：250
+  // 其他区域id可见zone_id.ts
+  // 尘封秘岩: 431, 昂萨哈凯尔：888，荣誉野：554，狼狱停船场：250
+  // 全部区域请用zoneId: ZoneId.MatchAll
   zoneId: [888, 431, 554, 250],
 
-  //此为非cactbot时间轴相关触发器，新触发器放入triggers:[]的大括号内才可有效触发
+  // 此为非cactbot时间轴相关触发器，新触发器放入triggers:[]的大括号内才可有效触发
   triggers: [
     
     // 触发器1：在战场使用冲刺时播放冲刺语音
@@ -33,7 +34,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.ability({ id: '7181' }),
       
       // 以下部分规定了本触发器触发的先行条件，若不满足则触发器不会触发
-      // data的key可在type/data.d.ts找，matches可看netregexes.ts
+      // data的key可在源码type/data.d.ts找，matches可看netregexes.ts
       condition: function (data, matches, output) {
         
         return data.me === matches.source      // 保证是本机使用角色释放的技能
@@ -55,17 +56,18 @@ Options.Triggers.push({
       disabled: false,// 是否禁用此触发器。将false改为true则本触发器不触发
 
       // ACT日志第39条，详见：https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md
-      // 因为不想改到源码身上，所以这里确认本机行为只能手动写一下自己id了（
-      regex: '^.{14} UpdateHp 27:[^:]*:玖时九:(?<currentHp>[^:]*):(?<maxHp>[^:]*)',
+      regex: '^.{14} UpdateHp 27:[^:]*:(?<source>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*)',
 
       
       // 以下部分规定了本触发器触发的先行条件，若不满足则触发器不会触发
-      // data的key可在type/data.d.ts找，matches可看netregexes.ts
+      // data的key可在type/data.d.ts找，此处matches为上述正则表达式的几个分组名称
       condition: function (data, matches, output) {
-        return matches.currentHp < matches.maxHp * 0.3
-          || matches.currentHp === matches.maxHp * 0.3; // 此处为血量小于等于最大血量的30%，数值可改
-              // && data.job === 'PLD')      // 同上
-              // && data.role === 'none')  
+        if (data.me === matches.source) {   // 保证为本机用户
+          return matches.currentHp < matches.maxHp * 0.3
+            || matches.currentHp === matches.maxHp * 0.3; // 此处为血量小于等于最大血量的30%，数值可改
+          // && data.job === 'PLD')      // 同上
+          // && data.role === 'none')  
+        }
       },
       
       sound: '../../user/raidboss/Charlotta_Paladin_cfmy/res/豆丁救命.mp3', // 语音文件（相对于ui/raidboss/的相对路径）
