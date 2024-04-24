@@ -76,6 +76,31 @@ Options.Triggers.push({
       //infoText: {cn:"测试"},
     },
 
+    // 触发器3：在战场死亡时播放不甘心语音
+    {
+      id: 'Charlotta_Paladin_Death_cfmy',
+     
+      disabled: false,// 是否禁用此触发器。将false改为true则本触发器不触发
+
+      // 25条（0x19）死亡
+      regex: Regexes.wasDefeated(),
+      
+      // 以下部分规定了本触发器触发的先行条件，若不满足则触发器不会触发
+      // data的key可在源码type/data.d.ts找，matches可看netregexes.ts
+      condition: function (data, matches, output) {
+        
+        return data.me === matches.target   // 保证是本机使用角色死亡
+        // && data.job === 'PLD')       // 所用职业为骑士(若需要则取消注释，并增加括号)
+        // && data.role === 'tank')     // 也可选择大类别如坦克职业、治疗职业等。（若需要则取消注释，并增加括号）
+        // 以上选项皆可在cactbot源码中types文件夹job.d.ts文件中找到
+      },
+      
+      sound: '../../user/raidboss/Charlotta_Paladin_cfmy/res/豆丁不甘.mp3', // 语音文件（相对于ui/raidboss/的相对路径）
+      soundVolume: 1, // 音量，从0-1，1为最大
+
+      // infoText: {cn:"测试"},
+    },
+
   ],
 })
 
