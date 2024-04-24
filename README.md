@@ -8,6 +8,7 @@
 -->
 
 # 基于cactbot的战场豆丁语音触发器
+
 <!-- TOC -->
 
 - [基于cactbot的战场豆丁语音触发器](#%E5%9F%BA%E4%BA%8Ecactbot%E7%9A%84%E6%88%98%E5%9C%BA%E8%B1%86%E4%B8%81%E8%AF%AD%E9%9F%B3%E8%A7%A6%E5%8F%91%E5%99%A8)
@@ -26,13 +27,13 @@
 
 在使用本插件前，你需要安装ACT及cactbot插件。如您使用ACT国服整合版，则可在如下位置一键安装cactbot。
 
-![国服ACT整合版安装cactbot](png\cactbot_install.png)
+![国服ACT整合版安装cactbot](.\png\cactbot_install.png)
 
 ### 设置cactbot
 
 在插件-ngld悬浮窗处可找到cactbot配置。找到自己的cactbot user目录（以下简称use文件夹），检查默认触发器提示输出方式是否将提示音打开。
 
-![cactbot设置](png\cactbot_config.png)
+![cactbot设置](.\png\cactbot_config.png)
 
 下载Charlotta_Paladin_cfmy.zip，并将其解压到user文件夹下的raidboss文件夹内。
 
