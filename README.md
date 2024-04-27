@@ -1,8 +1,8 @@
 <!--
  * @Date: 2024-04-24
  * @LastEditors: Wakasagihime-99
- * @LastEditTime: 2024-04-24
- * @FilePath: \\cactbotd:\\software\\ACT\\Plugins\\cactbot-offline\\user\\raidboss\\Charlotta_Paladin_cfmy\\README.md
+ * @LastEditTime: 2024-04-27
+ * @FilePath: \\Charlotta_Paladin_cfmy\\README.md
  * @FFXIV: 玖时九@拂晓之间
  * @Description: 用户指南
 -->
@@ -49,7 +49,8 @@
   - 战场疾跑播放奔跑语音
   - 血量低于30%时播放helpme
   - 死亡语音
-  - 骑士无敌音效
+  - 骑士无敌音效随机
+  - 全职业LB攒满
   - 也许还会更新
 - 如您想关闭某个触发器，或增加其他条件（如只有职业为骑士时触发），可打开alimas.js并根据注释酌情修改。下图红线为可能会常用的设置。
 
@@ -57,5 +58,7 @@
 
 ## 注意
 
-- 灵感及素材来源于【【FF14】当骑士拉拉肥用上Relink豆丁语音包-哔哩哔哩】 <https://b23.tv/ytIrYrr> ，特此鸣谢
-- 如出现问题，看我干嘛，你看我会吗？（请于github发issues（或者也许在游戏上找我！？））
+- 灵感及部分素材来源于【【FF14】当骑士拉拉肥用上Relink豆丁语音包-哔哩哔哩】 <https://b23.tv/ytIrYrr> ，特此鸣谢
+- 其他素材来源于解包文件，见 <https://g.nga.cn/read.php?tid=39242143&page=1>
+- 感谢国服ACT群的各位大佬们耐心的教学与解答
+- 初学者，做着玩的，如出现问题，看我干嘛，你看我会吗？（狗头心虚）（请于github发issues（或者也许在游戏上找我！？））

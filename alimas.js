@@ -1,18 +1,20 @@
 /*
  * @Date: 2024-04-18
  * @LastEditors: Wakasagihime-99
- * @LastEditTime: 2024-04-25
+ * @LastEditTime: 2024-04-27
  * @FilePath: \\Charlotta_Paladin_cfmy\\alimas.js
  * @FFXIV: 玖时九@拂晓之间
  * @Description: 豆丁骑士语音包——战场版
- * @Log: 卡在了同一条触发条件不能分开触发，暂时放弃了这个想法
+ * @Log: 卡在了同一条触发条件不能分开触发，暂时放弃了这个想法；
+ *       问题被大佬解答了。详见module.export图片，功能已实现；
  */
-
 
 //检查文件是否加载
 console.log('==========================');
 console.log('触发器文件已正常加载阿力马斯');
 console.log('==========================');
+
+let randomNum = 0; // 定义一个随机数全局变量
 
 //触发器本体
 Options.Triggers.push({
@@ -118,13 +120,53 @@ Options.Triggers.push({
         // 以下部分规定了本触发器触发的先行条件，若不满足则触发器不会触发
         // data的key可在源码type/data.d.ts找，matches可看netregexes.ts
         condition: function (data, matches, output) {
-          return data.me === matches.source              //为本机使用者
+          randomNum = Math.round(Math.random()); // 取0或1的随机数
+          return data.me === matches.source //为本机使用者
         },
 
-        sound: '../../user/raidboss/Charlotta_Paladin_cfmy/res/无敌.mp3',
+        sound: () => randomNum ? '../../user/raidboss/Charlotta_Paladin_cfmy/res/无敌.mp3'
+                               : '../../user/raidboss/Charlotta_Paladin_cfmy/res/无敌2.mp3', // 取两个语音进行随机
         soundVolume: 1, 
 
+    },
+      
+    // 触发器5：LB攒满
+    {
+      id: 'Charlotta_Paladin_LB_cfmy',
+     
+      disabled: false,
+
+      // 36条（0x24）LimitBreak
+      regex: '^.{14} LimitBreak 24:(?<valueHex>[^:]*):(?<bars>[^:]*)',
+      
+     
+      condition: function (data, matches, output) {
+        // 测试用：console.log(matches.valueHex); 
+        return (matches.valueHex === '0DAC' && (data.job === 'DRK' || data.job === 'NIN' || data.job === 'AST'))
+        // dk 忍者 占星 105s LB
+          || (matches.valueHex === '07D0' && (data.job === 'GNB' || data.job === 'WHM' || data.job === 'BLM'))
+        // 绝枪 白魔 黑魔 60s LB
+          || (matches.valueHex === '0BB8' && (data.job === 'RDM' || data.job === 'DRG' || data.job === 'WAR'
+                                            || data.job === 'MCH' || data.job === 'DNC' || data.job === 'SCH'
+                                            || data.job === 'SMN'))
+        // 赤魔 龙骑 战士 机工 舞者 学者 召唤 90s LB
+          || (matches.valueHex === '0FA0' && (data.job === 'SAM' || data.job === 'PLD' || data.job === 'SGE'
+                                            || data.job === 'BRD'))
+        // 盘子 骑士 贤者 诗人 120s LB
+          || (matches.valueHex === '09C4' && (data.job === 'MNK' || data.job === 'RPR'))
+        // 武僧 镰刀 75s LB
+ 
       },
+      
+      sound: '../../user/raidboss/Charlotta_Paladin_cfmy/res/做好觉悟吧.wav', 
+      soundVolume: 1, // 音量
+
+      // 测试用
+      // run: function(data, matches, output){
+      //   console.log('已触发');
+      // }
+      
+    },
 
 
     ],
